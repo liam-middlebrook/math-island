@@ -19,7 +19,7 @@ from gi.repository import Gtk
 from gettext import gettext as _
 
 
-class Example(Activity):
+class MathIsland(Activity):
     def __init__(self, sugar_handle):
         Activity.__init__(self, sugar_handle)
 
