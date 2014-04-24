@@ -22,7 +22,11 @@ from gettext import gettext as _
 class MathIsland(Activity):
     def __init__(self, sugar_handle):
         Activity.__init__(self, sugar_handle)
-
+        
+        # Create position vars for player
+        self.playerX = 4
+        self.playerY = 4
+        
         # Create a Toolbar
         toolbar = Gtk.Toolbar()
                
@@ -68,7 +72,7 @@ class MathIsland(Activity):
         # Add a picture
         picture = Gtk.Image()
         picture.set_from_file("gnu-head.png")
-        grid.attach(picture, 4, 4, 1, 1)
+        grid.attach(picture, self.playerX, self.playerY, 1, 1)
 
         # Tell the button to run a class method
         button.connect('clicked', self.greeter, entry, output, grid, picture)
@@ -77,7 +81,9 @@ class MathIsland(Activity):
         self.show_all()
 
     def greeter(self, button, entry, output, grid, picture):
-        grid.attach(picture, 5, 5, 1, 1)
+        self.playerX+=1
+        self.playerY+=1
+        grid.attach(picture, self.playerX, self.playerY, 1, 1)
         if len(entry.get_text()) > 0:
             output.set_text("Hello " + entry.get_text() + "!")
         else:
