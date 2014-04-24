@@ -25,7 +25,7 @@ class MathIsland(Activity):
 
         # Create a Toolbar
         toolbar = Gtk.Toolbar()
-
+               
         # Add toolbar to Sugar Activity Toolbar Space
         self.set_toolbar_box(toolbar)
 
@@ -65,11 +65,11 @@ class MathIsland(Activity):
         button = Gtk.Button(label=_("Greet!"))
         grid.attach(button, 0, 2, 1, 1)
 
-		# Add a picture
-		picture = Gtk.Image()
-		picture.set_from_file("rms.png")
-		grid.attach(picture, 4, 4, 1, 1)
-		
+        # Add a picture
+        picture = Gtk.Image()
+        picture.set_from_file("gnu-head.png")
+        grid.attach(picture, 4, 4, 1, 1)
+
         # Tell the button to run a class method
         button.connect('clicked', self.greeter, entry, output)
 
