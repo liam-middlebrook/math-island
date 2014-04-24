@@ -71,12 +71,13 @@ class MathIsland(Activity):
         grid.attach(picture, 4, 4, 1, 1)
 
         # Tell the button to run a class method
-        button.connect('clicked', self.greeter, entry, output)
+        button.connect('clicked', self.greeter, entry, output, grid, picture)
 
         # Show all components (otherwise none will be displayed)
         self.show_all()
 
-    def greeter(self, button, entry, output):
+    def greeter(self, button, entry, output, grid, picture):
+        grid.attach(picture, 5, 5, 1, 1)
         if len(entry.get_text()) > 0:
             output.set_text("Hello " + entry.get_text() + "!")
         else:
