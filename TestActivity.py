@@ -35,7 +35,6 @@ class TestActivity(sugar3.activity.activity.Activity):
         # Note that set_canvas implicitly calls read_file when
         # resuming from the Journal.
         self.set_canvas(self._pygamecanvas)
-        self._pygamecanvas.grab_focus()
 
         # Start the game running (self.game.run is called when the
         # activity constructor returns).
