@@ -18,7 +18,7 @@ class MathIsland:
         self.paused = False
         self.direction = 1
         
-        self.player = Player()
+        self.player = Player.Player()
 
     def set_paused(self, paused):
         self.paused = paused
@@ -44,6 +44,7 @@ class MathIsland:
 
             # Pump PyGame messages.
             for event in pygame.event.get():
+                player.update(event)
                 if event.type == pygame.QUIT:
                     return
                 elif event.type == pygame.VIDEORESIZE:
