@@ -44,7 +44,7 @@ class MathIsland:
 
             # Pump PyGame messages.
             for event in pygame.event.get():
-                player.update(event)
+                self.player.update(event)
                 if event.type == pygame.QUIT:
                     return
                 elif event.type == pygame.VIDEORESIZE:
