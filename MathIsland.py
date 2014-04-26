@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import pygame
+import Player
 from gi.repository import Gtk
 
 
@@ -16,6 +17,8 @@ class MathIsland:
 
         self.paused = False
         self.direction = 1
+        
+        self.player = Player()
 
     def set_paused(self, paused):
         self.paused = paused
@@ -71,6 +74,8 @@ class MathIsland:
 
             # Draw the ball
             pygame.draw.circle(screen, (255, 0, 0), (self.x, self.y), 100)
+
+            self.player.draw(screen)
 
             # Flip Display
             pygame.display.flip()
