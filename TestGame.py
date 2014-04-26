@@ -3,7 +3,7 @@ import pygame
 from gi.repository import Gtk
 
 
-class TestGame:
+class MathIsland:
     def __init__(self):
         # Set up a clock for managing the frame rate.
         self.clock = pygame.time.Clock()
@@ -84,7 +84,8 @@ class TestGame:
 def main():
     pygame.init()
     pygame.display.set_mode((0, 0), pygame.RESIZABLE)
-    game = TestGame()
+    game = MathIsland()
     game.run()
 
-main()
+if __name__ == '__main__':
+    main()

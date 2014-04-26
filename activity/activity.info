@@ -1,6 +1,6 @@
 [Activity]
-name = SugargameTest
-bundle_id = org.sugarlabs.SugargameTest
-exec = sugar-activity TestActivity.TestActivity
+name = Math Island
+bundle_id = edu.rit.MathIsland
+exec = sugar-activity MathIslandActivity.MathIslandActivity
 icon = activity-generic
 activity_version = 1
