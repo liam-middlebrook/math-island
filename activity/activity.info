@@ -2,5 +2,5 @@
 name = Math Island
 bundle_id = edu.rit.MathIsland
 exec = sugar-activity MathIslandActivity.MathIslandActivity
-icon = activity-generic
+icon = icon
 activity_version = 1
