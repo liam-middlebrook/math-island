@@ -6,7 +6,7 @@ class Player:
     def __init__(self):
         self.speed = 64
         self.texture = pygame.image.load("player.png")
-        self.rect = (128, 128, 64, 64)
+        self.rect = pygame.Rect(128, 128, 64, 64)
     def draw(self, surface):
         surface.blit(self.texture, self.rect)
     def update(self, event):
