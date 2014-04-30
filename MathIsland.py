@@ -75,7 +75,7 @@ class MathIsland:
                             (self.board_x + self.tile_size * x,
                              self.board_y * self.tile_size * y))
 
-            screen.blit(image, (0,0))
+            screen.blit(image, (64,64))
 
             #TODO: draw the fuel, other special objects
 
