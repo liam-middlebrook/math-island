@@ -73,6 +73,9 @@ class MathIsland:
                         self.direction = -1
                     elif event.key == pygame.K_RIGHT:
                         self.direction = 1
+
+            # Clear Display
+            screen.fill((255, 255, 255))  # 255 for white
             
             # Draw the game board
             for x in range(len(self.board)):
@@ -82,9 +85,6 @@ class MathIsland:
                             (self.board_x + self.tile_size * x,
                              self.board_y * self.tile_size * y))
             screen.blit(image, (64,64))
-
-            # Clear Display
-            screen.fill((255, 255, 255))  # 255 for white
 
             #TODO: draw the fuel, other special objects
 
