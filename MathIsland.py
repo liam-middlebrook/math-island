@@ -16,7 +16,7 @@ class MathIsland:
         self.direction = 1
 
     def load_map(self):
-        self.level = new Level('levels/001.ilv')
+        self.level = Level('levels/001.ilv')
         board_width = self.level.width
         board_height = self.level.height
 
