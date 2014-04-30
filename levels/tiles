@@ -1,0 +1,7 @@
+p	Pavement	pavement.png	0/1
+g	Grass	grass.png	1/8
+r	Rock	rock.png	1/4
+s	Sand	sand.png	1/8
+G	Tall Grass	tallgrass.png	3/8
+R	Sharp Rock	sharprock.png	1/2
+w	Water	water.png	1/1
