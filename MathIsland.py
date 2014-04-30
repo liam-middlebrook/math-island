@@ -45,12 +45,10 @@ class MathIsland:
         pass
 
     # The main game loop.
-    def run(self, window):
+    def run(self):
         self.running = True
 
         screen = pygame.display.get_surface()
-
-        image = pygame.image.load("grass.png").convert()
 
         while self.running:
             # Pump GTK messages.
@@ -73,13 +71,11 @@ class MathIsland:
             screen.fill((255, 255, 255))  # 255 for white
             
             # Draw the game board
-            #for x in range(len(self.board)):
-            #    for y in range(len(self.board[0])):
-            #        screen.blit(self.board[x][y], 
-            #                (self.board_x + self.tile_size * x,
-            #                 self.board_y * self.tile_size * y))
-
-            screen.blit(image, (64,64))
+            for x in range(len(self.board)):
+                for y in range(len(self.board[0])):
+                    screen.blit(self.board[x][y], 
+                            (self.board_x + self.tile_size * x,
+                             self.board_y * self.tile_size * y))
 
             #TODO: draw the fuel, other special objects
 
@@ -102,9 +98,9 @@ class MathIsland:
 # ./TestGame.py
 def main():
     pygame.init()
-    window = pygame.display.set_mode((0, 0), pygame.RESIZABLE)
+    pygame.display.set_mode((0, 0), pygame.RESIZABLE)
     game = MathIsland()
-    game.run(window)
+    game.run()
 
 if __name__ == '__main__':
     main()
