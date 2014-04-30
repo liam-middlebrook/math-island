@@ -70,13 +70,14 @@ class MathIsland:
                         self.direction = 1
             
             # Draw the game board
-            for x in range(len(self.board)):
-                for y in range(len(self.board[0])):
-                    screen.blit(self.board[x][y], 
-                            (self.board_x + self.tile_size * x,
-                             self.board_y * self.tile_size * y))
+            #for x in range(len(self.board)):
+            #    for y in range(len(self.board[0])):
+            #        screen.blit(self.board[x][y], 
+            #                (self.board_x + self.tile_size * x,
+            #                 self.board_y * self.tile_size * y))
 
             window.blit(image, (64,64))
+            screen.blit(image, (64,64))
 
             #TODO: draw the fuel, other special objects
 
