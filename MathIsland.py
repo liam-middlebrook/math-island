@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import pygame
-import Level
+from level import Level
 from gi.repository import Gtk
 
 
