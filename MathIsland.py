@@ -44,7 +44,7 @@ class MathIsland:
         pass
 
     # The main game loop.
-    def run(self):
+    def run(self, window):
         self.running = True
 
         screen = pygame.display.get_surface()
@@ -75,7 +75,7 @@ class MathIsland:
                             (self.board_x + self.tile_size * x,
                              self.board_y * self.tile_size * y))
 
-            screen.blit(image, (64,64))
+            window.blit(image, (64,64))
 
             #TODO: draw the fuel, other special objects
 
@@ -101,9 +101,9 @@ class MathIsland:
 # ./TestGame.py
 def main():
     pygame.init()
-    pygame.display.set_mode((0, 0), pygame.RESIZABLE)
+    window = pygame.display.set_mode((0, 0), pygame.RESIZABLE)
     game = MathIsland()
-    game.run()
+    game.run(window)
 
 if __name__ == '__main__':
     main()
