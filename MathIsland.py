@@ -75,6 +75,7 @@ class MathIsland:
             # Draw the game board
             for x in range(len(self.board)):
                 for y in range(len(self.board[0])):
+                    print "Blitting " + str(x) + "," + str(y)
                     screen.blit(self.board[x][y], 
                             (self.board_x + self.tile_size * x,
                              self.board_y * self.tile_size * y))
