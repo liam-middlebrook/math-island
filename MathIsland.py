@@ -8,14 +8,23 @@ class MathIsland:
         # Set up a clock for managing the frame rate.
         self.clock = pygame.time.Clock()
 
-        self.x = -100
-        self.y = 100
-
-        self.vx = 10
-        self.vy = 0
+        self.tile_size = 64
+        self.board_x = 0
+        self.board_y = 0
 
         self.paused = False
         self.direction = 1
+
+    def load_map(self):
+        self.level = new Level('levels/001.ilv')
+        board_width = self.level.width
+        board_height = self.level.height
+
+        self.board = []
+        for i in range(board_width):
+            self.board.append([])
+            for j in range(board_height):
+                self.board.append(pygame.image.load(self.level[i,j].image))
 
     def set_paused(self, paused):
         self.paused = paused
@@ -50,27 +59,23 @@ class MathIsland:
                         self.direction = -1
                     elif event.key == pygame.K_RIGHT:
                         self.direction = 1
+            
+            # Draw the game board
+            for x in range(len(self.board)):
+                for y in range(len(self.board[0])):
+                    screen.blit(self.board[x][y], 
+                            (self.board_x + self.tile_size * x,
+                             self.board_y * self.tile_size * y))
 
-            # Move the ball
-            if not self.paused:
-                self.x += self.vx * self.direction
-                if self.direction == 1 and self.x > screen.get_width() + 100:
-                    self.x = -100
-                elif self.direction == -1 and self.x < -100:
-                    self.x = screen.get_width() + 100
+            #TODO: draw the fuel, other special objects
 
-                self.y += self.vy
-                if self.y > screen.get_height() - 100:
-                    self.y = screen.get_height() - 100
-                    self.vy = -self.vy
-
-                self.vy += 5
+            #TODO: draw the player
 
             # Clear Display
             screen.fill((255, 255, 255))  # 255 for white
 
             # Draw the ball
-            pygame.draw.circle(screen, (255, 0, 0), (self.x, self.y), 100)
+            pygame.draw.circle(screen, (255, 0, 0), (screen.get_width() / 2, screen.get_height() / 2), 100)
 
             # Flip Display
             pygame.display.flip()
