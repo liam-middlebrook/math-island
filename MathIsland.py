@@ -78,6 +78,8 @@ class MathIsland:
             screen.fill((255, 255, 255))  # 255 for white
             
             # Draw the game board
+            print "board width: " + str(len(self.board))
+            print "board height: " + str(len(self.board[0]))
             for x in range(len(self.board)):
                 for y in range(len(self.board[0])):
                     print "Blitting " + str(x) + "," + str(y)
