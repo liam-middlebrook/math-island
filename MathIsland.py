@@ -31,7 +31,7 @@ class MathIsland:
         for i in range(board_width):
             self.board.append([])
             for j in range(board_height):
-                if self.level[i,j].image == None:
+                if self.level[j,i].image == None:
                     print '[' + str(i) + ',' + str(j) + ']: Nonetype'
                     self.board[i].append(pygame.image.load("grass.png"))
                 else:
