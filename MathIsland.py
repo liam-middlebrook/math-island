@@ -49,6 +49,8 @@ class MathIsland:
 
         screen = pygame.display.get_surface()
 
+        image = pygame.image.load("grass.png")
+
         while self.running:
             # Pump GTK messages.
             while Gtk.events_pending():
@@ -72,6 +74,8 @@ class MathIsland:
                     screen.blit(self.board[x][y], 
                             (self.board_x + self.tile_size * x,
                              self.board_y * self.tile_size * y))
+
+            screen.blit(image, (0,0))
 
             #TODO: draw the fuel, other special objects
 
