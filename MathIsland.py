@@ -49,7 +49,7 @@ class MathIsland:
 
         screen = pygame.display.get_surface()
 
-        image = pygame.image.load("grass.png")
+        image = pygame.image.load("grass.png").convert()
 
         while self.running:
             # Pump GTK messages.
