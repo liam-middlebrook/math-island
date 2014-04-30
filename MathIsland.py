@@ -7,6 +7,7 @@ from gi.repository import Gtk
 class MathIsland:
     def __init__(self):
         # Set up a clock for managing the frame rate.
+        print 'Initializing MathIsland'
         self.clock = pygame.time.Clock()
 
         self.tile_size = 64
