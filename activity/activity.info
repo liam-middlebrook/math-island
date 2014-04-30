@@ -1,8 +1,6 @@
 [Activity]
-name = MathIsland
-bundle_id = MathIsland.foss.rit.edu
-icon = exampleicon
-exec = sugar-activity activity.MathIsland
-show_launcher = yes
+name = Math Island
+bundle_id = edu.rit.MathIsland
+exec = sugar-activity MathIslandActivity.MathIslandActivity
+icon = activity-generic
 activity_version = 1
-license = MIT
