@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import pygame
-from level import Level
+import Level
 from gi.repository import Gtk
 
 
@@ -27,7 +27,10 @@ class MathIsland:
         for i in range(board_width):
             self.board.append([])
             for j in range(board_height):
-                self.board.append(pygame.image.load(self.level[i,j].image))
+                if self.level[i,j].image == None:
+                    self.board.append(pygame.image.load("grass.png"))
+                else:
+                    self.board.append(pygame.image.load(self.level[i,j].image))
 
     def set_paused(self, paused):
         self.paused = paused
