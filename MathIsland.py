@@ -90,8 +90,11 @@ class MathIsland:
             # Flip Display
             pygame.display.flip()
 
+            pygame.display.update()
+
             # Try to stay at 30 FPS
             self.clock.tick(30)
+
 
 
 # This function is called when the game is run directly from the command line:
