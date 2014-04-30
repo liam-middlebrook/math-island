@@ -33,10 +33,10 @@ class MathIsland:
             for j in range(board_height):
                 if self.level[i,j].image == None:
                     print '[' + str(i) + ',' + str(j) + ']: Nonetype'
-                    self.board.append(pygame.image.load("grass.png"))
+                    self.board[i].append(pygame.image.load("grass.png"))
                 else:
                     print '[' + str(i) + ',' + str(j) + ']: ' + self.level[i,j].image
-                    self.board.append(pygame.image.load(self.level[i,j].image))
+                    self.board[i].append(pygame.image.load(self.level[i,j].image))
 
     def set_paused(self, paused):
         self.paused = paused
