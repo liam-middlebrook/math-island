@@ -15,7 +15,7 @@ class MathIsland:
         self.paused = False
         self.direction = 1
 
-        slef.load_map()
+        self.load_map()
 
     def load_map(self):
         self.level = Level('levels/001.ilv')
