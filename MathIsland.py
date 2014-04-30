@@ -21,8 +21,11 @@ class MathIsland:
 
     def load_map(self):
         self.level = Level('levels/001.ilv')
+        print "Loading levels/001.ilv"
         board_width = self.level.width
         board_height = self.level.height
+        print "board_width: " + str(board_width)
+        print "board_height: " + str(board_height)
 
         self.board = []
         for i in range(board_width):
