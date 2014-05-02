@@ -55,7 +55,8 @@ class Level(object):
         take = lambda prefix: (line.replace(prefix, "", 1).strip()
                                for line in data if line.startswith(prefix))
         take1 = lambda prefix: next(take(prefix))
-        self.title = take1("#Title")
+        try: self.title = take1("#Title")
+        except StopIteration: self.title = "Escape from Math Island!"
         self.text  = "\n".join(take("#Text"))
         self.start = Coord(*map(int, take1("#Start").split()))
         self.end   = Coord(*map(int, take1("#End").split()))
