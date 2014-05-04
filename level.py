@@ -76,7 +76,7 @@ class Level(object):
         return self._map[indices[1]][indices[0]]
 
     def getcost(self, x, y):
-        return bound(0, self[x,y].cost + self.fuel.pop(Coord(x,y), 0), 1)
+        return bound(-1, self.fuel.pop(Coord(x,y),0) - self[x,y].cost, 1)
 
 if __name__ == '__main__':
     lv = Level(path.join(LEVELHOME, "002.ilv"))
