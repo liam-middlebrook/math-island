@@ -9,13 +9,18 @@ class Player:
         self.rect = pygame.Rect(128, 128, 64, 64)
     def draw(self, surface):
         surface.blit(self.texture, self.rect)
-    def update(self, event):
+    def update(self, event, level):
+        self.mapRect = pygame.Rect(self.rect.x/self.speed, self.rect.Y/self.speed, 0, 0)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT or event.key == pygame.K_KP4:
-                self.rect.x -= self.speed
+                if level[self.mapRect.x - 1, self.mapRect.y].passable:
+                    self.rect.x -= self.speed
             elif event.key == pygame.K_RIGHT or event.key == pygame.K_KP6:
-                self.rect.x += self.speed
+                if level[self.mapRect.x + 1, self.mapRect.y].passable:
+                    self.rect.x += self.speed
             if event.key == pygame.K_UP or event.key == pygame.K_KP8:
-                self.rect.y -= self.speed
+                if level[self.mapRect.x, self.mapRect.y - 1].passable:
+                    self.rect.y -= self.speed
             elif event.key == pygame.K_DOWN or event.key == pygame.K_KP2:
-                self.rect.y += self.speed
+                if level[self.mapRect.x, self.mapRect.y + 1].passable:
+                    self.rect.y += self.speed
