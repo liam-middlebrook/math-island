@@ -73,7 +73,7 @@ class Level(object):
                          line.split() for line in take("#Refuel")]}
     def __getitem__(self, indices):
         assert len(indices) == 2, "Invalid level lookup"
-        return self._map[indices[1]][indices[0]]
+        return self._map[indices[0]][indices[1]]
 
     def getcost(self, x, y):
         return bound(0, self[x,y].cost + self.fuel.pop(Coord(x,y), 0), 1)
