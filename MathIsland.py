@@ -36,10 +36,10 @@ class MathIsland:
             for y in range(board_height):
                 if self.level[x,y].image == None:
                     print '[' + str(y) + ',' + str(x) + ']: Nonetype'
-                    self.board[y].append(pygame.image.load("content/tiles/grass.png"))
+                    self.board[x].append(pygame.image.load("content/tiles/grass.png"))
                 else:
                     print '[' + str(y) + ',' + str(x) + ']: ' + self.level[x,y].image
-                    self.board[y].append(pygame.image.load(self.level[x,y].image))
+                    self.board[x].append(pygame.image.load(self.level[x,y].image))
         self.player.rect.x = self.level.start.x * 64
         self.player.rect.y = self.level.start.y * 64
 
