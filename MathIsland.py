@@ -23,7 +23,7 @@ class MathIsland:
         self.load_map()
 
     def load_map(self):
-        self.level = Level('levels/001.ilv')
+        self.level = Level('content/levels/001.ilv')
         print "Loading levels/001.ilv"
         board_width = self.level.width
         board_height = self.level.height
@@ -36,7 +36,7 @@ class MathIsland:
             for x in range(board_width):
                 if self.level[x,y].image == None:
                     print '[' + str(y) + ',' + str(x) + ']: Nonetype'
-                    self.board[y].append(pygame.image.load("grass.png"))
+                    self.board[y].append(pygame.image.load("content/tiles/grass.png"))
                 else:
                     print '[' + str(y) + ',' + str(x) + ']: ' + self.level[x,y].image
                     self.board[y].append(pygame.image.load(self.level[x,y].image))
