@@ -12,7 +12,7 @@ class Player:
     def update(self, event, level):
         self.mapRect = pygame.Rect(self.rect.x/self.speed, self.rect.y/self.speed, 0, 0)
         if event.type == pygame.KEYDOWN:
-            if self.fuel <= 0:
+            if self.fuel > 0:
                 if event.key == pygame.K_LEFT or event.key == pygame.K_KP4:
                     if level[self.mapRect.x - 1, self.mapRect.y].passable:
                         self.fuel = self.fuel - level.getcost(self.mapRect.x - 1, self.mapRect.y)
