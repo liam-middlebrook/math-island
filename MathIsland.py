@@ -20,10 +20,12 @@ class MathIsland:
         
         self.player = Player.Player()
 
-        self.load_map()
+        self.font_obj = pygame.font.Font('content/fonts/DroidSans.ttf', 32)
 
-    def load_map(self):
-        self.level = Level('content/levels/001.ilv')
+        self.load_map(1)
+
+    def load_map(self, mapNum):
+        self.level = Level('content/levels/00' + mapNum + '.ilv')
         print "Loading levels/001.ilv"
         board_width = self.level.width
         board_height = self.level.height
@@ -94,8 +96,13 @@ class MathIsland:
 
             #TODO: draw the fuel, other special objects
 
-            #TODO: draw the player
+            # Draw text and stats and stuff
+            fuel_text_obj = self.font_obj.render('Fuel: ' + str(player.fuel))
+            fuel_text_rect = fuel_text_obj.get_rect()
+            fuel_text_rect.topleft = self.level.width * 64
+            screen.blit(fuel_text_obj, fuel_text_rect)
 
+            #draw the player
             self.player.draw(screen)
 
             # Flip Display
