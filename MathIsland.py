@@ -102,7 +102,7 @@ class MathIsland:
                     False, 
                     pygame.Color(0,0,0) )
             fuel_text_rect = fuel_text_obj.get_rect()
-            fuel_text_rect.topleft = self.level.width * 64
+            fuel_text_rect.topleft = (self.level.width * 64, 10)
             screen.blit(fuel_text_obj, fuel_text_rect)
 
             #draw the player
