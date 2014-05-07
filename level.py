@@ -25,7 +25,7 @@ def bound(low, val, hi):
 class Tile(object):
     def __init__(self, name, image, frac):
         self.name = name
-        self.image = image
+        self.image = path.join(TILEHOME,image)
         self.passable = True
         self.cost = Frac(frac)
 
