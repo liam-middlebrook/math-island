@@ -97,7 +97,7 @@ class MathIsland:
             #TODO: draw the fuel, other special objects
 
             # Draw text and stats and stuff
-            fuel_text_obj = self.font_obj.render('Fuel: ' + str(player.fuel))
+            fuel_text_obj = self.font_obj.render('Fuel: ' + str(self.player.fuel))
             fuel_text_rect = fuel_text_obj.get_rect()
             fuel_text_rect.topleft = self.level.width * 64
             screen.blit(fuel_text_obj, fuel_text_rect)
