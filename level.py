@@ -23,7 +23,8 @@ def bound(low, val, hi):
     return max(low, min(val, hi))
 
 class Tile(object):
-    def __init__(self, name, image, frac):
+    def __init__(self, char, name, image, frac):
+        self.char = char
         self.name = name
         self.image = path.join(TILEHOME,image)
         self.passable = True
@@ -33,10 +34,12 @@ class BlockingTile(object):
     def __init__(self, fn=None):
         self.image = fn or random.choice(obstacles)
         self.passable = False
+        self.char = '.'
 
 class WaterTile(BlockingTile):
     def __init__(self):
         BlockingTile.__init__(self, WATERTILE)
+        self.char = 'w'
 
 class Tiles(object):
     def __init__(self):
@@ -45,7 +48,7 @@ class Tiles(object):
         with open(TILESETTINGS) as tiledata:
             for line in tiledata:
                 sym, name, image, frac = line.split("\t")
-                self.tilemap[sym] = Tile(name, image, frac)
+                self.tilemap[sym] = Tile(sym, name, image, frac)
         self.tilemap['w'] = WaterTile()
     def __getitem__(self, index):
         if index == '.': return BlockingTile()
@@ -58,6 +61,7 @@ class Level(object):
         take = lambda prefix: (line.replace(prefix, "", 1).strip()
                                for line in data if line.startswith(prefix))
         take1 = lambda prefix: next(take(prefix))
+        # I know that this isn't perfect, but it's the most convenient way to do it
         try: self.title = take1("#Title")
         except StopIteration: self.title = "Escape from Math Island!"
         self.text  = "\n".join(take("#Text"))
@@ -78,7 +82,18 @@ class Level(object):
     def getcost(self, x, y):
         return bound(-1, self.fuel.pop(Coord(x,y),0) - self[x,y].cost, 1)
 
+    def __repr__(self):
+        ret = []
+        ret.append("#Title " + self.title)
+        ret.extend("#Text "+s for s in self.text.split("\n"))
+        ret.append("#Start {0.x} {0.y}".format(self.start))
+        ret.append("#End {0.x} {0.y}".format(self.end))
+        ret.append("#Fuel "+str(self.startfuel))
+        ret.extend("#Refuel {0.x} {0.y} {1}".format(c, t) for c,t in self.fuel.items())
+        ret.extend(" ".join(t.char for t in row) for row in self._map)
+        return "\n".join(ret)
+
+
 if __name__ == '__main__':
-    lv = Level(path.join(LEVELHOME, "002.ilv"))
-    print lv.getcost(4,3)
-    print lv.getcost(4,3)
+    lv = Level(path.join(LEVELHOME, "003.ilv"))
+    print lv
