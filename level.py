@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 import os.path as path
 import random
@@ -10,6 +11,23 @@ TILESETTINGS = path.join(LEVELHOME, "tiles")
 TILEHOME = path.join(CONTENTHOME, "tiles")
 OBSHOME = path.join(CONTENTHOME, "obstacles")
 WATERTILE = path.join(OBSHOME, "water.png")
+EMPTYMAP = r"""
+#Title Welcome to Math Island
+#Start 0 0
+#End 0 0
+#Fuel 1
+
+..........
+..........
+..........
+..........
+..........
+..........
+..........
+..........
+..........
+..........
+""".split("\n")
 
 Coord = namedtuple('Coord', ['x', 'y'])
 
@@ -56,8 +74,10 @@ class Tiles(object):
 Tiles = Tiles()
 
 class Level(object):
-    def __init__(self, lvsource):
-        data = safeloadlines(lvsource)
+    def __init__(self, lvsource=None):
+        self.loads(safeloadlines(lvsource) if lvsource else EMPTYMAP)
+
+    def loads(self, data):
         take = lambda prefix: (line.replace(prefix, "", 1).strip()
                                for line in data if line.startswith(prefix))
         take1 = lambda prefix: next(take(prefix))
@@ -95,5 +115,6 @@ class Level(object):
 
 
 if __name__ == '__main__':
-    lv = Level(path.join(LEVELHOME, "003.ilv"))
-    print lv
+    #lv = Level(path.join(LEVELHOME, "003.ilv"))
+    lv = Level()
+    print(lv)
