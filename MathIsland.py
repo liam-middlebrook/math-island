@@ -25,6 +25,7 @@ class MathIsland:
         self.load_map(1)
 
     def load_map(self, mapNum):
+        self.LevelID = mapNum
         self.level = Level('content/levels/00' + str(mapNum) + '.ilv')
         print "Loading levels/001.ilv"
         board_width = self.level.width
@@ -73,7 +74,7 @@ class MathIsland:
 
             # Pump PyGame messages.
             for event in pygame.event.get():
-                self.player.update(event, self.level)
+                self.player.update(event, self)
                 if event.type == pygame.QUIT:
                     return
                 elif event.type == pygame.VIDEORESIZE:
