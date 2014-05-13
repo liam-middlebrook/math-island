@@ -3,6 +3,7 @@
 import sys
 import os
 import argparse
+import itertools
 from fractions import Fraction as Frac
 try:
     # Python 3
@@ -13,13 +14,19 @@ except ImportError:
     from Tkinter import *
     import tkFileDialog as filedialog
 
-from level import Level, Coord
+from level import Level, Coord, Tiles
 
 class FuelChangeState(object):
     def __init__(self, f):
         self.fuel = Frac(f)
     def __call__(self, lvl, x, y):
         lvl.fuel[Coord(x,y)] = self.fuel
+
+class TileChangeState(object):
+    def __init__(self, c):
+        self.tile = Tiles[c]
+    def __call__(self, lvl, x, y):
+        lvl[x,y] = self.tile
 
 # Gui for inputting variables
 class Editor(Frame):
@@ -30,7 +37,6 @@ class Editor(Frame):
         '''
         # Get the root window
         self.master = master
-        self.mapframe = None
         self.level = Level()
         self.state = None
 
@@ -45,11 +51,18 @@ class Editor(Frame):
 
         header = Frame(self.master)
         header.pack(side=TOP)
-        self.titlebar = Entry(header)
+        Button(header, text="Save", command=self.save).pack(side=LEFT)
+        Button(header, text="Load", command=self.load).pack(side=LEFT)
+        Button(header, text="Quit", command=self.master.destroy).pack(side=LEFT)
+
+        infoframe = Frame(self.master)
+        infoframe.pack(side=TOP)
+        Label(infoframe, text="Title: ").pack(side=TOP)
+        self.titlebar = Entry(infoframe)
         self.titlebar.pack()
-        Button(header, text="Save", command=self.save).pack()
-        Button(header, text="Load", command=self.load).pack()
-        Button(header, text="Quit", command=self.master.destroy).pack()
+        Label(infoframe, text="Text: ").pack(side=TOP)
+        self.textbox = Text(infoframe, width=60, height=4)
+        self.textbox.pack()
 
         fuelframe = Frame(self.master)
         fuelframe.pack(side=BOTTOM)
@@ -59,25 +72,34 @@ class Editor(Frame):
                          command=lambda f=f: self.setstate(FuelChangeState(f)))
             btn.grid(row=0, column=i)
 
-        self.build()
+        tileframe = Frame(self.master)
+        tileframe.pack(side=RIGHT)
+        def _atb(char, i):
+            btn = Button(tileframe,
+                         text="{0}: {1}".format(char, getattr(Tiles[char], "cost", None)),
+                         command=lambda c=char: self.setstate(TileChangeState(c)))
+            btn.grid(column=(i//10), row=(i%10), sticky=N+E+S+W)
+        for i, c in enumerate(itertools.chain(('.','w'), Tiles)):
+            _atb(c, i)
 
-    def build(self):
-
-        # Clean up if we're rebuilding
-        if self.mapframe:
-            self.mapframe.destroy()
-
-        self.mapframe = Frame(self.master)
-        self.mapframe.pack(side=LEFT)
+        mapframe = Frame(self.master)
+        mapframe.pack(side=LEFT)
         self.btns = [[None for i in range(self.level.width)]
                            for j in range(self.level.height)]
         for y in range(self.level.height):
             for x in range(self.level.width):
-                btn = Button(self.mapframe, text=self.level[x, y].char,
-                             command=lambda x=x, y=y: self.apply(x, y))
-                btn.grid(row=y, column=x)
-                self.btns[x][y] = btn
+                self.btns[x][y] = btn = Button(
+                        mapframe, text=self.level[x, y].char,
+                        command=lambda x=x, y=y: self.apply(x, y))
+                btn.grid(row=y, column=x, sticky=N+E+S+W)
 
+        self.redraw()
+
+    def redraw(self):
+
+        for y in range(self.level.height):
+            for x in range(self.level.width):
+                self.btns[x][y].config(text=self.level[x,y].char)
     def reset(self):
         self.level = Level()
         self.build()
@@ -88,6 +110,7 @@ class Editor(Frame):
     def apply(self, x, y):
         if self.state:
             self.state(self.level, x, y)
+            self.redraw()
 
     def save(self):
         fn = filedialog.asksaveasfilename(**self.file_opt)
@@ -99,7 +122,7 @@ class Editor(Frame):
         fn = filedialog.askopenfilename(**self.file_opt)
         if fn:
             self.level = Level(fn)
-        self.build()
+        self.redraw()
 
 def main():
     root = Tk()
