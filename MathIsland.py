@@ -100,8 +100,8 @@ class MathIsland:
             for x in range(len(self.board)):
                 for y in range(len(self.board[0])):
                     screen.blit(self.board[x][y], 
-                            (maptopleft + self.board_x + self.tile_size * x,
-                             maptopright + self.board_y + self.tile_size * y))
+                            (self.maptopleft + self.board_x + self.tile_size * x,
+                             self.maptopright + self.board_y + self.tile_size * y))
 
             #TODO: draw the fuel, other special objects
 
