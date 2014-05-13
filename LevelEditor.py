@@ -145,6 +145,7 @@ class Editor(Frame):
     def setfuel(self):
         if isinstance(self.state, FuelChangeState):
             self.level.startfuel = self.state.fuel
+        self.redraw()
 
     def apply(self, x, y):
         if self.state:
