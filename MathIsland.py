@@ -102,7 +102,7 @@ class MathIsland:
                         (coord.x * self.tile_size + self.board_x, 
                          coord.y * self.tile_size + self.board_y))
                 fuel_text_obj = self.font_obj.render(
-                    str(coord.f), 
+                    str(self.level.fuel[coord]), 
                     False, 
                     pygame.Color(255,255,255) )
                 fuel_text_rect.topleft = (
