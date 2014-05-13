@@ -12,8 +12,8 @@ class MathIsland:
         self.clock = pygame.time.Clock()
 
         self.tile_size = 64
-        self.board_x = 0
-        self.board_y = 0
+        self.board_x = 300
+        self.board_y = 100
 
         self.paused = False
         self.direction = 1
@@ -67,6 +67,9 @@ class MathIsland:
 
         image = pygame.image.load("content/tiles/grass.png").convert()
 
+        bgimage = pygame.image.load("content/miscassets/background.png").convert()
+        fuelimage = pygame.image.load("content/miscassets/fuel.png").convert()
+
         while self.running:
             # Pump GTK messages.
             while Gtk.events_pending():
@@ -87,6 +90,9 @@ class MathIsland:
 
             # Clear Display
             screen.fill((255, 255, 255))  # 255 for white
+
+            #Draw the background
+            screen.blit(bgimage, (0,0))
             
             # Draw the game board
             for x in range(len(self.board)):
@@ -96,6 +102,10 @@ class MathIsland:
                              self.board_y + self.tile_size * y))
 
             #TODO: draw the fuel, other special objects
+            for coord in self.level.fuel:
+                screen.blit(fuelimage, 
+                        (coord.x * self.tile_size + self.board_x, 
+                         coord.y * self.tile_size + self.board_y))
 
             # Draw text and stats and stuff
             fuel_text_obj = self.font_obj.render(
@@ -103,7 +113,7 @@ class MathIsland:
                     False, 
                     pygame.Color(0,0,0) )
             fuel_text_rect = fuel_text_obj.get_rect()
-            fuel_text_rect.topleft = (self.level.width * 64, 10)
+            fuel_text_rect.topleft = (0,0)
             screen.blit(fuel_text_obj, fuel_text_rect)
 
             #draw the player
