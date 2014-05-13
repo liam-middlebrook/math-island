@@ -26,7 +26,7 @@ class MathIsland:
 
     def load_map(self, mapNum):
         self.levelID = mapNum
-        self.level = Level('content/levels/00' + str(mapNum) + '.ilv')
+        self.level = Level('content/levels/{0:03}.ilv'.format(mapNum))
         print "Loading levels/001.ilv"
         board_width = self.level.width
         board_height = self.level.height
