@@ -21,6 +21,7 @@ class MathIsland:
         self.player = Player.Player()
 
         self.font_obj = pygame.font.Font('/usr/share/fonts/gnu-free/FreeSans.ttf', 32)
+        self.font_obj_sml = pygame.font.Font('/usr/share/fonts/gnu-free/FreeSans.ttf', 20)
 
         self.load_map(1)
 
@@ -101,10 +102,10 @@ class MathIsland:
                 screen.blit(fuelimage, 
                         (coord.x * self.tile_size + self.board_x, 
                          coord.y * self.tile_size + self.board_y))
-                fuel_text_obj = self.font_obj.render(
+                fuel_text_obj = self.font_obj_sml.render(
                     str(self.level.fuel[coord]), 
                     False, 
-                    pygame.Color(255,255,255) )
+                    pygame.Color(0,0,0) )
                 fuel_text_rect.topleft = (
                         10 + coord.x * self.tile_size + self.board_x, 
                         26 + coord.y * self.tile_size + self.board_y)
