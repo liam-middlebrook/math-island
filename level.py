@@ -67,10 +67,12 @@ class Tiles(object):
             for line in tiledata:
                 sym, name, image, frac = line.split("\t")
                 self.tilemap[sym] = Tile(sym, name, image, frac)
-        self.tilemap['w'] = WaterTile()
     def __getitem__(self, index):
         if index == '.': return BlockingTile()
-        return self.tilemap[index]
+        elif index == 'w': return WaterTile()
+        else: return self.tilemap[index]
+    def __iter__(self):
+        return self.tilemap.__iter__()
 Tiles = Tiles()
 
 class Level(object):
@@ -95,14 +97,24 @@ class Level(object):
         self.fuel = {Coord(int(x), int(y)): Frac(f)
                      for x, y, f in [
                          line.split() for line in take("#Refuel")]}
+
     def __getitem__(self, indices):
         assert len(indices) == 2, "Invalid level lookup"
         return self._map[indices[1]][indices[0]]
 
+    def __setitem__(self, indices, newtile):
+        assert len(indices) == 2, "Invalid level lookup"
+        self._map[indices[1]][indices[0]] = newtile
+        return newtile
+
     def getcost(self, x, y):
         return bound(-1, self.fuel.pop(Coord(x,y),0) - self[x,y].cost, 1)
 
+    def clean(self):
+        self.fuel = {c:f for c,f in self.fuel.items() if f}
+
     def __repr__(self):
+        self.clean()
         ret = []
         ret.append("#Title " + self.title)
         if self.text:
