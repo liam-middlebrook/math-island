@@ -105,7 +105,8 @@ class Level(object):
     def __repr__(self):
         ret = []
         ret.append("#Title " + self.title)
-        ret.extend("#Text "+s for s in self.text.split("\n"))
+        if self.text:
+            ret.extend(("#Text "+s) for s in self.text.split("\n"))
         ret.append("#Start {0.x} {0.y}".format(self.start))
         ret.append("#End {0.x} {0.y}".format(self.end))
         ret.append("#Fuel "+str(self.startfuel))
