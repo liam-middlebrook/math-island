@@ -65,30 +65,28 @@ class Editor(Frame):
 
         infoframe = Frame(self.master)
         infoframe.pack(side=TOP)
-        Label(infoframe, text="Title: ").pack(side=TOP)
+        Label(infoframe, text="Title: ").pack(side=LEFT)
         self.title = StringVar()
-        Entry(infoframe, textvariable=self.title).pack()
-        Label(infoframe, text="Text: ").pack(side=TOP)
+        Entry(infoframe, textvariable=self.title).pack(side=LEFT)
+        Label(infoframe, text="Text: ").pack(side=LEFT)
         self.text = Text(infoframe, width=60, height=4)
         self.text.pack()
 
         fuelframe = Frame(self.master)
         fuelframe.pack(side=BOTTOM)
         for i in range(9):
-            f = Frac(i, 8)
-            Button(fuelframe, text=str(f),
-                   command=lambda f=f: self.setstate(FuelChangeState(f))).pack(side=LEFT)
+            Button(fuelframe, text="{0}/8".format(i),
+                   command=lambda i=i: self.setstate(FuelChangeState(Frac(i,8)))
+            ).pack(side=LEFT)
         Button(fuelframe, text="Starting Fuel", command=self.setfuel).pack(side=LEFT)
 
-        tileframe = Frame(self.master)
-        tileframe.pack(side=RIGHT)
-        getcost = lambda t: getattr(Tiles[t], "cost", None)
-        tiles = sorted(Tiles, key=getcost)
-        for i, c in enumerate(itertools.chain(('.','w'), tiles)):
-            btn = Button(tileframe,
-                         text="{0}: {1}".format(c, getcost(c)),
-                         command=lambda c=c: self.setstate(TileChangeState(c)))
-            btn.grid(column=(i//10), row=(i%10), sticky=N+E+S+W)
+        fuelframe = Frame(self.master)
+        scrollbar = Scrollbar(fuelframe, orient=VERTICAL)
+        self.fuellist = Listbox(fuelframe, yscrollcommand=scrollbar.set)
+        scrollbar.config(command=self.fuellist.yview)
+        scrollbar.pack(side=RIGHT, fill=Y)
+        self.fuellist.pack(side=LEFT, fill=BOTH, expand=1)
+        fuelframe.pack(side=LEFT)
 
         mapframe = Frame(self.master)
         mapframe.pack(side=LEFT)
@@ -105,6 +103,16 @@ class Editor(Frame):
         sb = Button(mapframe, text="End", command=lambda:self.setstate(EndChangeState()))
         sb.grid(row=self.level.height, column=self.level.width//2, columnspan=self.level.width//2, sticky=N+E+S+W)
 
+        tileframe = Frame(self.master)
+        tileframe.pack(side=RIGHT)
+        getcost = lambda t: getattr(Tiles[t], "cost", None)
+        tiles = sorted(Tiles, key=getcost)
+        for i, c in enumerate(itertools.chain(('.','w'), tiles)):
+            btn = Button(tileframe,
+                         text="{0}: {1}".format(c, getcost(c)),
+                         command=lambda c=c: self.setstate(TileChangeState(c)))
+            btn.grid(column=(i//10), row=(i%10), sticky=N+E+S+W)
+
         self.redraw()
 
         '''
@@ -112,6 +120,13 @@ class Editor(Frame):
         '''
 
     def redraw(self):
+        self.level.clean()
+        ms = "({0.x}, {0.y}) = {1}"
+        self.fuellist.delete(0, END) # clear
+        self.fuellist.insert(END, ms.format(self.level.start, "Start"))
+        self.fuellist.insert(END, ms.format(self.level.end, "End"))
+        for key, value in self.level.fuel.items():
+            self.fuellist.insert(END, ms.format(key, value))
 
         for y in range(self.level.height):
             for x in range(self.level.width):
