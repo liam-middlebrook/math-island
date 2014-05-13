@@ -3,6 +3,7 @@
 import sys
 import os
 import argparse
+from fractions import Fraction as Frac
 try:
     # Python 3
     from tkinter import *
@@ -12,7 +13,13 @@ except ImportError:
     from Tkinter import *
     import tkFileDialog as filedialog
 
-from level import Level
+from level import Level, Coord
+
+class FuelChangeState(object):
+    def __init__(self, f):
+        self.fuel = Frac(f)
+    def __call__(self, lvl, x, y):
+        lvl.fuel[Coord(x,y)] = self.fuel
 
 # Gui for inputting variables
 class Editor(Frame):
@@ -23,70 +30,76 @@ class Editor(Frame):
         '''
         # Get the root window
         self.master = master
+        self.mapframe = None
         self.level = Level()
         self.state = None
+
+        self.file_opt = options = {
+                'defaultextension': '.ilv',
+                'filetypes': [('Math Island Level', '.ilv')],
+                'parent': self.master,
+                'title': 'Math Island Level',
+        }
+
+        self.master.bind("<Escape>", lambda e:self.master.destroy())
+
+        header = Frame(self.master)
+        header.pack(side=TOP)
+        self.titlebar = Entry(header)
+        self.titlebar.pack()
+        Button(header, text="Save", command=self.save).pack()
+        Button(header, text="Load", command=self.load).pack()
+        Button(header, text="Quit", command=self.master.destroy).pack()
+
+        fuelframe = Frame(self.master)
+        fuelframe.pack(side=BOTTOM)
+        for i in range(9):
+            f = Frac(i, 8)
+            btn = Button(fuelframe, text=str(f),
+                         command=lambda f=f: self.setstate(FuelChangeState(f)))
+            btn.grid(row=0, column=i)
 
         self.build()
 
     def build(self):
 
         # Clean up if we're rebuilding
-        # self.InputPane.destroy()
+        if self.mapframe:
+            self.mapframe.destroy()
 
-        # The left pane, detailing the inputs
-        self.InputPane = Frame(self.master)
-        self.InputPane.pack(side='left')
-        self.rules = []
-
-        self.mapframe = Entry(self.master)
-        self.mapframe.pack(side='left')
+        self.mapframe = Frame(self.master)
+        self.mapframe.pack(side=LEFT)
         self.btns = [[None for i in range(self.level.width)]
                            for j in range(self.level.height)]
         for y in range(self.level.height):
             for x in range(self.level.width):
-                btn = Button(self.mapframe, text=".",
+                btn = Button(self.mapframe, text=self.level[x, y].char,
                              command=lambda x=x, y=y: self.apply(x, y))
                 btn.grid(row=y, column=x)
                 self.btns[x][y] = btn
 
-        # Assorted deductions
-        '''
-        # Buttons
-        ButtonFrame = Frame(self.InputPane)
-        ButtonFrame.grid(row=row, column=0)
-        # Reload the rules
-        self.Reloader = Button(ButtonFrame, text='Reload', command=self.reload)
-        self.Reloader.grid(row=0, column=0, sticky=N + S + E + W)
-        # Reset the scores
-        self.Resetter = Button(ButtonFrame, text='Reset', command=self.reset)
-        self.Resetter.grid(row=0, column=1, sticky=N + S + E + W)
-
-        # This one will change to show the final grade
-        # Do the actual recalculation
-        self.GradeButton = Button(
-            self.InputPane, text='Result: ', command=self.recalculate)
-        self.GradeButton.grid(row=row, column=1, sticky=N + S + E + W)
-
-        # Print out the errors
-        scrollbar = Scrollbar(self.ErrorText)
-        scrollbar.pack(side='right', fill=Y)
-        # The +2 is for the "penalty" box set and the result pane
-        self.ErrorText = Text(self.master, width=80, height=(len(rules) + 2))
-        self.ErrorText.pack(side='right', fill=BOTH)
-        self.ErrorText.config(yscrollcommand=scrollbar.set)
-        scrollbar.config(command=self.ErrorText.yview)
-        '''
-
     def reset(self):
-        '''
-        Clears all output and resets scores to maximum
-        '''
         self.level = Level()
+        self.build()
+
+    def setstate(self, state):
+        self.state = state
 
     def apply(self, x, y):
         if self.state:
             self.state(self.level, x, y)
 
+    def save(self):
+        fn = filedialog.asksaveasfilename(**self.file_opt)
+        if not fn: return
+        with open(fn, "w") as fi:
+            fi.write(repr(self.level))
+
+    def load(self):
+        fn = filedialog.askopenfilename(**self.file_opt)
+        if fn:
+            self.level = Level(fn)
+        self.build()
 
 def main():
     root = Tk()
