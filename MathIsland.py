@@ -44,8 +44,8 @@ class MathIsland:
                     print '[' + str(y) + ',' + str(x) + ']: ' + self.level[x,y].image
                     self.board[x].append(pygame.image.load(self.level[x,y].image))
                     
-        self.player.rect.x = self.level.start.x * 64
-        self.player.rect.y = self.level.start.y * 64
+        self.player.rect.x = self.level.start.x * 64 + self.board_x
+        self.player.rect.y = self.level.start.y * 64 + self.board_y
         self.player.fuel = self.level.startfuel
 
     def set_paused(self, paused):
