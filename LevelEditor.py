@@ -120,9 +120,12 @@ class Editor(Frame):
         '''
 
     def redraw(self):
+
         self.level.clean()
+
         ms = "({0.x}, {0.y}) = {1}"
         self.fuellist.delete(0, END) # clear
+        self.fuellist.insert(END, "Start Fuel: {}".format(self.level.startfuel))
         self.fuellist.insert(END, ms.format(self.level.start, "Start"))
         self.fuellist.insert(END, ms.format(self.level.end, "End"))
         for key, value in self.level.fuel.items():
