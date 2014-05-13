@@ -10,7 +10,7 @@ class Player:
     def draw(self, surface):
         surface.blit(self.texture, self.rect)
     def update(self, event, game):
-        self.mapRect = pygame.Rect(self.rect.x/self.speed - game.board_x, self.rect.y/self.speed - game.board_y, 0, 0)
+        self.mapRect = pygame.Rect((self.rect.x - game.board_x)/self.speed, (self.rect.y - game.board_y)/self.speed, 0, 0)
         if event.type == pygame.KEYDOWN:
             if self.fuel > 0:
                 if event.key == pygame.K_LEFT or event.key == pygame.K_KP4:
