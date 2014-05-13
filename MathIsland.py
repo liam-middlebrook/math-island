@@ -20,12 +20,13 @@ class MathIsland:
         
         self.player = Player.Player()
 
-        self.font_obj = pygame.font.Font('content/fonts/DroidSans.ttf', 32)
+        self.font_obj = pygame.font.Font('/usr/share/fonts/gnu-free/FreeSans.ttf', 32)
 
         self.load_map(1)
 
     def load_map(self, mapNum):
-        self.level = Level('content/levels/00' + str(mapNum) + '.ilv')
+        self.levelID = mapNum
+        self.level = Level('content/levels/{0:03}.ilv'.format(mapNum))
         print "Loading levels/001.ilv"
         board_width = self.level.width
         board_height = self.level.height
@@ -73,7 +74,7 @@ class MathIsland:
 
             # Pump PyGame messages.
             for event in pygame.event.get():
-                self.player.update(event, self.level)
+                self.player.update(event, self)
                 if event.type == pygame.QUIT:
                     return
                 elif event.type == pygame.VIDEORESIZE:
