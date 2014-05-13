@@ -28,6 +28,14 @@ class TileChangeState(object):
     def __call__(self, lvl, x, y):
         lvl[x,y] = self.tile
 
+class StartChangeState(object):
+    def __call__(self, lvl, x, y):
+        lvl.start = Coord(x,y)
+
+class EndChangeState(object):
+    def __call__(self, lvl, x, y):
+        lvl.end = Coord(x,y)
+
 # Gui for inputting variables
 class Editor(Frame):
 
@@ -92,6 +100,10 @@ class Editor(Frame):
                         mapframe, text=self.level[x, y].char,
                         command=lambda x=x, y=y: self.apply(x, y))
                 btn.grid(row=y, column=x, sticky=N+E+S+W)
+        sb = Button(mapframe, text="Start", command=lambda:self.setstate(StartChangeState()))
+        sb.grid(row=self.level.height, column=0, columnspan=self.level.width//2, sticky=N+E+S+W)
+        sb = Button(mapframe, text="End", command=lambda:self.setstate(EndChangeState()))
+        sb.grid(row=self.level.height, column=self.level.width//2, columnspan=self.level.width//2, sticky=N+E+S+W)
 
         self.redraw()
 
