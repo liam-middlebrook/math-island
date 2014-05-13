@@ -68,9 +68,9 @@ class Editor(Frame):
         fuelframe.pack(side=BOTTOM)
         for i in range(9):
             f = Frac(i, 8)
-            btn = Button(fuelframe, text=str(f),
-                         command=lambda f=f: self.setstate(FuelChangeState(f)))
-            btn.grid(row=0, column=i)
+            Button(fuelframe, text=str(f),
+                   command=lambda f=f: self.setstate(FuelChangeState(f))).pack(side=LEFT)
+        Button(fuelframe, text="Starting Fuel", command=self.setfuel).pack(side=LEFT)
 
         tileframe = Frame(self.master)
         tileframe.pack(side=RIGHT)
@@ -104,12 +104,17 @@ class Editor(Frame):
         for y in range(self.level.height):
             for x in range(self.level.width):
                 self.btns[x][y].config(text=self.level[x,y].char)
+
     def reset(self):
         self.level = Level()
         self.build()
 
     def setstate(self, state):
         self.state = state
+
+    def setfuel(self):
+        if isinstance(self.state, FuelChangeState):
+            self.level.startfuel = self.state.fuel
 
     def apply(self, x, y):
         if self.state:
