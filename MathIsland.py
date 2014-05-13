@@ -15,6 +15,9 @@ class MathIsland:
         self.board_x = 0
         self.board_y = 0
 
+        self.maptopleft = 300
+        self.maptopright = 100
+
         self.paused = False
         self.direction = 1
         
@@ -68,9 +71,6 @@ class MathIsland:
         image = pygame.image.load("content/tiles/grass.png").convert()
 
         bgimage = pygame.image.load("content/miscassets/background.png").convert()
-
-        maptopleft = 340
-        maptopright = 150
 
         while self.running:
             # Pump GTK messages.
