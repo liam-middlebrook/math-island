@@ -21,13 +21,13 @@ class MathIsland:
         self.player = Player.Player()
 
         self.font_obj = pygame.font.Font('/usr/share/fonts/gnu-free/FreeSans.ttf', 32)
+        self.font_obj_sml = pygame.font.Font('/usr/share/fonts/gnu-free/FreeSans.ttf', 20)
 
         self.load_map(1)
 
     def load_map(self, mapNum):
         self.levelID = mapNum
         self.level = Level('content/levels/{0:03}.ilv'.format(mapNum))
-        print "Loading levels/001.ilv"
         board_width = self.level.width
         board_height = self.level.height
         print "board_width: " + str(board_width)
@@ -38,10 +38,8 @@ class MathIsland:
             self.board.append([])
             for y in range(board_height):
                 if self.level[x,y].image == None:
-                    print '[' + str(y) + ',' + str(x) + ']: Nonetype'
                     self.board[x].append(pygame.image.load("content/tiles/grass.png"))
                 else:
-                    print '[' + str(y) + ',' + str(x) + ']: ' + self.level[x,y].image
                     self.board[x].append(pygame.image.load(self.level[x,y].image))
                     
         self.player.rect.x = self.level.start.x * 64 + self.board_x
@@ -64,8 +62,6 @@ class MathIsland:
         self.running = True
 
         screen = pygame.display.get_surface()
-
-        image = pygame.image.load("content/tiles/grass.png").convert()
 
         bgimage = pygame.image.load("content/miscassets/background.png").convert()
         fuelimage = pygame.image.load("content/miscassets/fuel.png").convert()
@@ -106,6 +102,14 @@ class MathIsland:
                 screen.blit(fuelimage, 
                         (coord.x * self.tile_size + self.board_x, 
                          coord.y * self.tile_size + self.board_y))
+                fuel_text_obj = self.font_obj_sml.render(
+                    str(self.level.fuel[coord]), 
+                    False, 
+                    pygame.Color(0,0,0) )
+                fuel_text_rect.topleft = (
+                        10 + coord.x * self.tile_size + self.board_x, 
+                        26 + coord.y * self.tile_size + self.board_y)
+                screen.blit(fuel_text_obj, fuel_text_rect)
 
             # Draw text and stats and stuff
             fuel_text_obj = self.font_obj.render(
