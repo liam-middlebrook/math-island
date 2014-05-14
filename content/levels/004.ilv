@@ -2,7 +2,7 @@
 #Text You can run on pavement without using any fuel!
 #Start 1 1
 #End 5 5
-#Fuel 0
+#Fuel 1/2
 . . . . . . . . . .
 . p p p . . . . . .
 . p p p s . . . . .
