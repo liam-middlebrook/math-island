@@ -10,7 +10,7 @@ class Player:
     def draw(self, surface):
         surface.blit(self.texture, self.rect)
     def update(self, event, game):
-        self.mapRect = pygame.Rect(self.rect.x/self.speed, self.rect.y/self.speed, 0, 0)
+        self.mapRect = pygame.Rect((self.rect.x - game.board_x)/self.speed, (self.rect.y - game.board_y)/self.speed, 0, 0)
         if event.type == pygame.KEYDOWN:
             if self.fuel > 0:
                 if event.key == pygame.K_LEFT or event.key == pygame.K_KP4:
@@ -29,5 +29,5 @@ class Player:
                     if game.level[self.mapRect.x, self.mapRect.y + 1].passable:
                         self.fuel = self.fuel + game.level.getcost(self.mapRect.x, self.mapRect.y + 1)
                         self.rect.y += self.speed
-            if self.rect.x == game.level.end.x * 64 and self.rect.y == game.level.end.y * 64:
+            if self.rect.x - game.board_x == game.level.end.x * 64 and self.rect.y - game.board_y == game.level.end.y * 64:
                 game.load_map(game.levelID + 1)
