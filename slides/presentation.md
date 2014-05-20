@@ -5,6 +5,15 @@
 ---
 
 # What is it?
+#### Math Island:
+Math Island is an open source game designed for 4th graders to learn fractions
+
++ Designed to be easy to get started
++ Playable for all levels of fractional understanding
++ Fun for all ages
++ Provides many levels of challenge
++ MIT licensed
++ Started from scratch, all design and art home grown
 
 ---
 
