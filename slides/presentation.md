@@ -11,20 +11,20 @@
 
 Math Island is an open source game designed for 4th graders to learn fractions
 
-+ Provides many levels of challenge
-+ MIT licensed
-+ Started from scratch
-+ Mixed open source and home grown art
-+ Easy level editor
+- Provides many levels of challenge
+- MIT licensed
+- Started from scratch
+- Mixed open source and home grown art
+- Easy level editor
 
 ---
 
 # How is it played?
 
-+ Robot wonders the island looking for a way home
-+ Fuel is used to move
-+ Robot dies if fuel is depleted
-+ Fuel scattered through out the island
+- Robot wanders the island looking for a way home
+- When the robot moves, it uses fuel
+- Robot dies if fuel is depleted
+- Fuel is scattered through out the island
 
 ---
 
@@ -73,9 +73,8 @@ Math Island is an open source game designed for 4th graders to learn fractions
 	- Better explanations about things like tiles
 - Better integration between components
 	- levels.py declares some utilities that MathIsland.py could find useful
-
-+ Art needs polishing
-+ Replace existing open source art with home grown
+- Art needs polishing
+- Replace existing open source art with home grown
 
 ---
 
