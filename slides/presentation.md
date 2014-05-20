@@ -21,6 +21,15 @@ Math Island is an open source game designed for 4th graders to learn fractions
 
 # How is it played?
 
++ Robot wonders the island looking for a way home
++ Fuel is used to move
++ Robot dies if fuel is depleted
++ Fuel scattered through out the island
+
+---
+
+# DEMO
+
 ---
 
 # How does the code work?
