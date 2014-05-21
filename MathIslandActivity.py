@@ -20,24 +20,26 @@ class MathIslandActivity(sugar3.activity.activity.Activity):
     def __init__(self, handle):
         super(MathIslandActivity, self).__init__(handle)
 
-        self.paused = False
+        self.main()
 
-        # Create the game instance.
-        self.game = MathIsland.MathIsland()
+        #self.paused = False
 
-        # Build the activity toolbar.
-        self.build_toolbar()
+        ## Create the game instance.
+        #self.game = MathIsland.MathIsland()
 
-        # Build the Pygame canvas.
-        self._pygamecanvas = sugargame.canvas.PygameCanvas(self)
+        ## Build the activity toolbar.
+        #self.build_toolbar()
 
-        # Note that set_canvas implicitly calls read_file when
-        # resuming from the Journal.
-        self.set_canvas(self._pygamecanvas)
+        ## Build the Pygame canvas.
+        #self._pygamecanvas = sugargame.canvas.PygameCanvas(self)
 
-        # Start the game running (self.game.run is called when the
-        # activity constructor returns).
-        self._pygamecanvas.run_pygame(self.game.run)
+        ## Note that set_canvas implicitly calls read_file when
+        ## resuming from the Journal.
+        #self.set_canvas(self._pygamecanvas)
+
+        ## Start the game running (self.game.run is called when the
+        ## activity constructor returns).
+        #self._pygamecanvas.run_pygame(self.game.run)
 
     def build_toolbar(self):
         toolbar_box = ToolbarBox()
