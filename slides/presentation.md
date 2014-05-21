@@ -1,7 +1,7 @@
 # Math Island
 
 - Derek Gonyeo (dgonyeo@csh.rit.edu)
-- Liam Middlebrook
+- Liam Middlebrook (liammiddlebrook@gmail.com)
 - Matt Soucy (msoucy@csh.rit.edu)
 - Dylan Ayrey
 
@@ -73,7 +73,6 @@ Example of level editor:
 
 - Initially there was x-y confusion when the engine loaded in the levels (it's since been fixed)
 - Level editor output could be beautified
-
 
 ---
 
