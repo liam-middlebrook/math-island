@@ -1,5 +1,9 @@
 # Math Island
 
+---
+
+# Authors
+
 - Derek Gonyeo (dgonyeo@csh.rit.edu)
 - Liam Middlebrook (liammiddlebrook@gmail.com)
 - Matt Soucy (msoucy@csh.rit.edu)
