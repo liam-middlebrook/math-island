@@ -47,6 +47,26 @@ Math Island is an open source game designed for 4th graders to learn fractions
 - The Level class is short and effective, and also comes with a super useful level editor
 - The Player class is easy to use and works well
 
+Example of level editor:
+
+    !python
+    #Title Running low on fuel
+    #Start 2 5
+    #End 6 2
+    #Fuel 1/4
+    #Refuel 4 3 1/1 
+    #Refuel 4 7 7/8
+    ..........
+    ..........
+    ......g...
+    ..ggg.g...
+    ..g.g.g...
+    ..ggg.g...
+    ..g...g...
+    ..ggggg...
+    ..........
+    ..........
+
 ---
 
 # Worst Pieces of software
@@ -58,6 +78,8 @@ Math Island is an open source game designed for 4th graders to learn fractions
 # Stumbling blocks
 
 - Different parts of the system were developed in parallel, so sometimes there was a failure to communicate design ideas
+- There was some discussion about our Row-major order. Though fairly arbitrary it was confusing for some.
+
 
 ---
 
@@ -71,6 +93,8 @@ Math Island is an open source game designed for 4th graders to learn fractions
 # Doing things differently
 
 - Would have been better to meet up more frequently/make sure that all members were up to date on the status of all of the components
+- Frequent tests on the XO
+- Badges?
 
 ---
 
