@@ -2,6 +2,10 @@
 
 # Math Island
 
+Github: [https://github.com/liam-middlebrook/math-island](https://github.com/liam-middlebrook/math-island)
+
+Wiki page: [http://wiki.sugarlabs.org/go/Math_island](http://wiki.sugarlabs.org/go/Math_island)
+
 ---
 
 # Authors
