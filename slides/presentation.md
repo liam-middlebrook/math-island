@@ -1,3 +1,5 @@
+---
+
 # Math Island
 
 ---
@@ -34,11 +36,13 @@ Math Island is an open source game designed for 4th graders to learn fractions
 
 # DEMO
 
+![Gameplay](./gameplay.png)
+
 ---
 
 # How does the code work?
 
-- On startup, level001.ilv is loaded in with Soucy's Level class
+- On startup, `level001.ilv` is loaded in with Soucy's Level class
 - Image objects for the different tiles in the map are made at this time
 - The engine draws the background, the tiles it just loaded in, and the current fuel level
 - Liam's Player class is used to draw the player, and react to key presses
@@ -76,7 +80,7 @@ Math Island is an open source game designed for 4th graders to learn fractions
 
 #Screenshot of Level Editor
 
-![levelEditor](http://i.imgur.com/9iuxV6A.png)
+![levelEditor](editor.png)
 
 ---
 

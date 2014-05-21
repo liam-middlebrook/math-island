@@ -1,6 +1,6 @@
 #!/usr/bin/make
 
-LANDSLIDE=landslide -cr -l table -x tables,abbr
+LANDSLIDE=landslide -cr -l table -x tables,abbr -i
 FILES=${sort ${wildcard *.md}}
 CATFILES=python3 -c 'print("\n---\n\n".join("\n".join(line.replace(".notes","\\footnote{")+"}" if ".notes" in line else line for line in open(f).read().split("\n") if "!cpp" not in line) for f in __import__("sys").argv[1:]))'
 
