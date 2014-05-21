@@ -24,7 +24,7 @@ Math Island is an open source game designed for 4th graders to learn fractions
 - Robot wanders the island looking for a way home
 - When the robot moves, it uses fuel
 - Robot dies if fuel is depleted
-- Fuel is scattered through out the island
+- Fuel is scattered throughout the island
 
 ---
 
@@ -34,13 +34,24 @@ Math Island is an open source game designed for 4th graders to learn fractions
 
 # How does the code work?
 
+- On startup, level001.ilv is loaded in with Soucy's Level class
+- Image objects for the different tiles in the map are made at this time
+- The engine draws the background, the tiles it just loaded in, and the current fuel level
+- Liam's Player class is used to draw the player, and on key presses determines if the player can move, moves the player, and reduces the amount of fuel
+- When the player reaches the end tile, it starts this process over with level002.ilv, and so on
+
 ---
 
 # Best pieces of software
 
+- The Level class is short and effective, and also comes with a super useful level editor
+- The Player class is easy to use and works well
+
 ---
 
 # Worst Pieces of software
+
+- Initially there was x-y confusion when the engine loaded in the levels (it's since been fixed)
 
 ---
 
@@ -53,6 +64,7 @@ Math Island is an open source game designed for 4th graders to learn fractions
 # Successes
 
 - Having a level editor makes it easier for the community to contribute new levels
+- Despite starting from scratch, we have a playable game with only one known bug (crashes at the end)
 
 ---
 
