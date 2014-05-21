@@ -39,8 +39,6 @@ class MathIslandActivity(sugar3.activity.activity.Activity):
         # activity constructor returns).
         self._pygamecanvas.run_pygame(self.game.run)
 
-        self.game.main()
-
     def build_toolbar(self):
         toolbar_box = ToolbarBox()
         self.set_toolbar_box(toolbar_box)

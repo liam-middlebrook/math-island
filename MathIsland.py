@@ -20,8 +20,8 @@ class MathIsland:
         
         self.player = Player.Player()
 
-        self.font_obj = pygame.font.Font('/usr/share/fonts/gnu-free/FreeSans.ttf', 32)
-        self.font_obj_sml = pygame.font.Font('/usr/share/fonts/gnu-free/FreeSans.ttf', 20)
+        self.font_obj = pygame.font.Font('FreeSans.ttf', 32)
+        self.font_obj_sml = pygame.font.Font('FreeSans.ttf', 20)
 
         self.load_map(1)
 
