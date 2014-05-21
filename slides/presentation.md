@@ -37,7 +37,7 @@ Math Island is an open source game designed for 4th graders to learn fractions
 - On startup, level001.ilv is loaded in with Soucy's Level class
 - Image objects for the different tiles in the map are made at this time
 - The engine draws the background, the tiles it just loaded in, and the current fuel level
-- Liam's Player class is used to draw the player, and on key presses determines if the player can move, moves the player, and reduces the amount of fuel
+- Liam's Player class is used to draw the player, and react to key presses
 - When the player reaches the end tile, it starts this process over with level002.ilv, and so on
 
 ---
@@ -47,9 +47,10 @@ Math Island is an open source game designed for 4th graders to learn fractions
 - The Level class is short and effective, and also comes with a super useful level editor
 - The Player class is easy to use and works well
 
-Example of level file:
+---
 
-    !python
+# Example of a level file:
+
     #Title Running low on fuel
     #Start 2 5
     #End 6 2
