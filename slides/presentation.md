@@ -72,6 +72,8 @@ Example of level editor:
 # Worst Pieces of software
 
 - Initially there was x-y confusion when the engine loaded in the levels (it's since been fixed)
+- Level editor output could be beautified
+
 
 ---
 
