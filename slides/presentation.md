@@ -120,6 +120,11 @@ Math Island is an open source game designed for 4th graders to learn fractions
 - General polish
 	- Cleaner UI
 	- Better explanations about things like tiles
+
+---
+
+# In the future (continued)
+
 - Better integration between components
 	- levels.py declares some utilities that MathIsland.py could find useful
 - Art needs polishing
