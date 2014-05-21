@@ -96,7 +96,8 @@ Example of level editor:
 
 - Would have been better to meet up more frequently/make sure that all members were up to date on the status of all of the components
 - Frequent tests on the XO
-- Badges?
+- Leadership/meetings make sure everyone is up to date
+
 
 ---
 
