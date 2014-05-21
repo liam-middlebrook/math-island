@@ -69,7 +69,9 @@ Math Island is an open source game designed for 4th graders to learn fractions
     ..........
 
 ---
-
+#Screenshot of Level Editor
+![levelEditor](http://i.imgur.com/9iuxV6A.png)
+---
 # Worst Pieces of software
 
 - Initially there was x-y confusion when the engine loaded in the levels (it's since been fixed)
