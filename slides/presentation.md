@@ -137,3 +137,5 @@ Math Island is an open source game designed for 4th graders to learn fractions
 ---
 
 # Questions?
+ 
+![Gource](gource.png)
