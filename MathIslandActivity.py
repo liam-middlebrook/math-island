@@ -35,10 +35,6 @@ class MathIslandActivity(sugar3.activity.activity.Activity):
         # resuming from the Journal.
         self.set_canvas(self._pygamecanvas)
 
-        # Initialize pygame
-        pygame.init()
-        pygame.display.set_mode((0, 0), pygame.RESIZABLE)
-
         # Start the game running (self.game.run is called when the
         # activity constructor returns).
         self._pygamecanvas.run_pygame(self.game.run)

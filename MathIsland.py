@@ -9,6 +9,9 @@ class MathIsland:
     def __init__(self):
         # Set up a clock for managing the frame rate.
         print 'Initializing MathIsland'
+        pygame.init()
+        pygame.display.set_mode((0, 0), pygame.RESIZABLE)
+
         self.clock = pygame.time.Clock()
 
         self.tile_size = 64
@@ -20,8 +23,8 @@ class MathIsland:
         
         self.player = Player.Player()
 
-        self.font_obj = pygame.font.Font('FreeSans.ttf', 32)
-        self.font_obj_sml = pygame.font.Font('FreeSans.ttf', 20)
+        self.font_obj = pygame.font.Font('/usr/share/fonts/gnu-free/FreeSans.ttf', 32)
+        self.font_obj_sml = pygame.font.Font('/usr/share/fonts/gnu-free/FreeSans.ttf', 20)
 
         self.load_map(1)
 
@@ -136,8 +139,6 @@ class MathIsland:
 # This function is called when the game is run directly from the command line:
 # ./TestGame.py
 def main():
-    pygame.init()
-    pygame.display.set_mode((0, 0), pygame.RESIZABLE)
     game = MathIsland()
     game.run()
 
